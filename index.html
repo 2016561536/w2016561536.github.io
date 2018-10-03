@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>主窗口</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/icons-extra.css" rel="stylesheet"/>
+    <style type="text/css">
+        body{background-color:#EFEFF4;}
+    </style>
+</head>
+<body>
+
+
+
+	<div class="mui-content" style="background-color:transparent">
+
+		<div class="mui-input-row" style="margin:5px;display:block">
+			<input id="编辑框1" type="text" placeholder="设备识别码" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
+		</div>
+
+		<div class="mui-input-row" style="margin:5px;display:block">
+			<input id="编辑框2" type="text" placeholder="激活码" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
+		</div>
+
+		<div class="mui-input-row" style="text-align:center;margin:5px;display:block">
+			<button id="按钮1" type="button" class="mui-btn mui-btn-primary" style="width:100%;height:40px;float:none;margin:0px 0px 0px 0px;font-size:14px;">计算</button>
+		</div>
+	</div>
+</body>
+<script src="js/mui.min.js"></script>
+<script src="js/editBox.js"></script>
+<script src="js/clipboard.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script src="js/button.js"></script>
+<script src="js/jiami.js"></script>
+<script>
+mui.init({swipeBack: false});
+var 剪贴板1 = new 剪贴板("剪贴板1");
+var 编辑框1 = new 编辑框("编辑框1",null,null,null,null,null);
+var 编辑框2 = new 编辑框("编辑框2",null,null,null,null,null);
+var 按钮1 = new 按钮("按钮1",按钮1_被单击);
+
+function 按钮1_被单击(){
+	编辑框2.置内容(CryptoJS.SHA1("lokok/*&^09" + 编辑框1.取内容()+"*&koki&^%^76gjf"));
+	剪贴板1.置剪贴板内容(CryptoJS.SHA1("lokok/*&^09" + 编辑框1.取内容()+"*&koki&^%^76gjf"));
+}
+</script>
+</html>
