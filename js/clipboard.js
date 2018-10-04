@@ -30,24 +30,4 @@
 			}
 
 		}
-        
-        //组件命令：
-        this.取剪贴板内容 = function (){
-			if(!mui.os.plus){//浏览器
-				console.log("取剪贴板内容命令只能在手机APP中使用");
-				return "";
-			}
-			if (plus.os.name == "Android") {//安卓系统
-				var Context = plus.android.importClass("android.content.Context");
-				var main = plus.android.runtimeMainActivity();
-				var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
-				return plus.android.invoke(clip,"getText");
-			}else{//苹果系统
-				var UIPasteboard  = plus.ios.importClass("UIPasteboard");
-				var generalPasteboard = UIPasteboard.generalPasteboard();
-				var clip = generalPasteboard.plusCallMethod({valueForPasteboardType:"public.utf8-plain-text"});
-				return clip;
-			}           
-        }  
-       
-    }
+        }
