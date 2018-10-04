@@ -1,105 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>主窗口</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <link href="css/icons-extra.css" rel="stylesheet"/>
-    <style type="text/css">
-        body{background-color:#EFEFF4;}
-    </style>
-</head>
-<body>
-
-
-
-	<div class="mui-content" style="background-color:transparent">
-
-		
-
-		<div class="mui-input-row" style="margin:5px;display:block">
-			<input id="编辑框1" type="text" class="mui-input-clear" placeholder="省代码(往下看）" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
-		</div>
-
-		<div class="mui-input-row" style="margin:5px;display:block">
-			<input id="编辑框2" type="text" class="mui-input-clear" placeholder="学校代码（往下看）" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
-		</div>
-
-		<div class="mui-input-row" style="margin:5px;display:block">
-			<label id="标签2" style="width:100%;color:#000000;font-size:16px;margin:0px 0px 0px 0px;padding:0px;text-align:left">找到你学校的网址,例如南京市宁海中学分校为“https://js.kouyu100.com/nhzxfx/index.jsp”,则“https://”与“.kouyu100.”之间的内容是省代码，例如南京市宁海中学分校省代码为js。学校代码为“.kouyu100.com/”后面到下一个“/”之间的内容，例如南京市宁海中学分校学校代码为nhzxfx，注意，区分大小写！</label>
-		</div>
-
-		<div class="mui-input-row" style="margin:5px;display:block">
-			<input id="编辑框3" type="text" class="mui-input-clear" placeholder="用户名" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
-		</div>
-
-		<div class="mui-input-row mui-password" style="margin:5px;display:block">
-			<input id="编辑框4" type="password" class="mui-input-password" placeholder="新密码(不填默认为123456789)" style="color:#000000;font-size:14px;margin:0px 0px 0px 0px;"></input>
-		</div>
-
-
-		<div class="mui-input-row" style="text-align:center;margin:5px;display:block">
-			<button id="按钮5" type="button" class="mui-btn mui-btn-primary" style="width:100%;height:40px;float:none;margin:0px 0px 0px 0px;font-size:16px;">重置密码</button>
-		</div>
-
-		<div class="mui-input-row" style="margin:0px 0px -5px 0px;text-align:center;display:block">
-			<img id="图片框1" style="width:100%;height:40px;" src="" />
-		</div>
-	</div>
-</body>
-<script src="js/mui.min.js"></script>
-<script src="js/bluebird_lable.js"></script>
-<script src="js/bluebird_editBox.js"></script>
-<script src="js/bluebird_button.js"></script>
-<script src="js/bluebird_imageBox.js"></script>
-<script src="js/bluebird_encrypt.js"></script>
-<script src="js/bluebird_jiami.js"></script>
-<script>
-mui.init({swipeBack: false});
-
-var 标签10 = new 标签("标签10",null);
-var 编辑框1 = new 编辑框("编辑框1",null,编辑框1_按下某键,null,null,null);
-var 编辑框2 = new 编辑框("编辑框2",null,编辑框2_按下某键,null,null,null);
-var 标签2 = new 标签("标签2",null);
-var 编辑框3 = new 编辑框("编辑框3",null,编辑框3_按下某键,null,null,null);
-var 编辑框4 = new 编辑框("编辑框4",null,编辑框4_按下某键,null,null,null);
-var 加密操作1 = new 加密操作("加密操作1");
-var 按钮5 = new 按钮("按钮5",按钮5_被单击);
-var 图片框1 = new 图片框("图片框1",null);
-
-function 编辑框1_按下某键(a) {if (a==13) {编辑框2.获取焦点();}}
-function 编辑框2_按下某键(a) {if (a==13) {编辑框3.获取焦点();}}
-function 编辑框3_按下某键(a) {if (a==13) {编辑框4.获取焦点();}}
-function 编辑框4_按下某键(a) {if (a==13) {编辑框4.清除焦点();按钮5_被单击();}}
-
-function 按钮5_被单击(){
-	编辑框1.清除焦点();
-	编辑框2.清除焦点();
-	编辑框3.清除焦点();
-	编辑框4.清除焦点();
-	if(编辑框1.取内容() == "" ){
-		alert("请输入完整信息！");
-		return;
-    }else{
-		if(编辑框2.取内容() == "" ){
-			alert("请输入完整信息！");
-		    return;
-		}else{
-		    if(编辑框3.取内容() == "" ){
-			    alert("请输入完整信息！");
-		        return;
-			}
-		}
-	}
-	if(编辑框4.取内容() == "" ){
-		编辑框4.置内容("123456789");
-	}
-	图片框1.置图片("http://" + 编辑框1.取内容()+ ".kouyu100.com/webinterface/webcall.action?msg=" + CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse("{'action':'resetPassword','salt2':'2fd1','device':'8c:a6:e4:7e:36:a2','paras':['" + 编辑框2.取内容()+"','" + 编辑框3.取内容() + "','" + 编辑框4.取内容() + "'],'code':'42','clientVersion':431,'salt1':'" + 编辑框2.取内容()+"','version':'102'}")));
-    图片框1.置可视(假);
-	alert("完成！");
-}
-</script>
-</html>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>口语100密码修改</title><meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link href="css/mui.min.css" rel="stylesheet"><link href="css/icons-extra.css" rel="stylesheet"><style type="text/css">body{background-color:#EFEFF4}</style></head><body><div class="mui-content" style="background-color:transparent"><div class="mui-input-row" style="margin:5px;display:block"><input id="编辑框1" type="text" class="mui-input-clear" placeholder="省代码(往下看）" style="color:#000;font-size:14px;margin:0 0 0 0"></div><div class="mui-input-row" style="margin:5px;display:block"><input id="编辑框2" type="text" class="mui-input-clear" placeholder="学校代码（往下看）" style="color:#000;font-size:14px;margin:0 0 0 0"></div><div class="mui-input-row" style="margin:5px;display:block"><label id="标签2" style="width:100%;color:#000;font-size:16px;margin:0;padding:0;text-align:left">找到你学校的网址,例如南京市宁海中学分校为“https:</label></div><div class="mui-input-row" style="margin:5px;display:block"><input id="编辑框3" type="text" class="mui-input-clear" placeholder="用户名" style="color:#000;font-size:14px;margin:0 0 0 0"></div><div class="mui-input-row mui-password" style="margin:5px;display:block"><input id="编辑框4" type="password" class="mui-input-password" placeholder="新密码(不填默认为123456789)" style="color:#000;font-size:14px;margin:0 0 0 0"></div><div class="mui-input-row" style="text-align:center;margin:5px;display:block"><button id="按钮5" type="button" class="mui-btn mui-btn-primary" style="width:100%;height:40px;float:none;margin:0;font-size:16px">重置密码</button></div><div class="mui-input-row" style="margin:0 0 -5px 0;text-align:center;display:block"><img id="图片框1" style="width:100%;height:40px" src=""></div></div></body><script src="all.js"></script><script>mui.init({
+            swipeBack: false
+        });
+        var 编辑框1 = new 编辑框 ("编辑框1", null, 编辑框1_按下某键, null, null, null);
+        var 编辑框2 = new 编辑框 ("编辑框2", null, 编辑框2_按下某键, null, null, null);
+        var 编辑框3 = new 编辑框 ("编辑框3", null, 编辑框3_按下某键, null, null, null);
+        var 编辑框4 = new 编辑框 ("编辑框4", null, 编辑框4_按下某键, null, null, null);
+        var 按钮5 = new 按钮 ("按钮5", 按钮5_被单击);
+        var 图片框1 = new 图片框 ("图片框1", null);
+        function 编辑框1_按下某键 (a) {
+            if (a == 13) {编辑框2.获取焦点 ()
+            }
+        }
+        function 编辑框2_按下某键 (a) {
+            if (a == 13) {编辑框3.获取焦点 ()
+            }
+        }
+        function 编辑框3_按下某键 (a) {
+            if (a == 13) {编辑框4.获取焦点 ()
+            }
+        }
+        function 编辑框4_按下某键 (a) {
+            if (a == 13) {编辑框4.清除焦点 ();按钮5_被单击 ()
+            }
+        }
+        function 按钮5_被单击 () {编辑框1.清除焦点 ();编辑框2.清除焦点 ();编辑框3.清除焦点 ();编辑框4.清除焦点 ();
+            if (编辑框1.取内容 () == "") {
+                alert("请输入完整信息！");
+                return
+            } else {
+                if (编辑框2.取内容 () == "") {
+                    alert("请输入完整信息！");
+                    return
+                } else {
+                    if (编辑框3.取内容 () == "") {
+                        alert("请输入完整信息！");
+                        return
+                    }
+                }
+            }
+            if (编辑框4.取内容 () == "") {编辑框4.置内容 ("123456789")
+            }图片框1.置图片 ("http://" + 编辑框1.取内容 () + ".kouyu100.com/webinterface/webcall.action?msg=" + CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse("{'action':'resetPassword','salt2':'2fd1','device':'8c:a6:e4:7e:36:a2','paras':['" + 编辑框2.取内容 () + "','" + 编辑框3.取内容 () + "','" + 编辑框4.取内容 () + "'],'code':'42','clientVersion':431,'salt1':'" + 编辑框2.取内容 () + "','version':'102'}")));
+            alert("完成！")
+        }</script></html>
